@@ -35,7 +35,7 @@
 # the decimal part is truncated, 2 is returned.
 # 
 # 
-#
+# Your runtime beats 91.63 % of python submissions
 class Solution(object):
     def mySqrt(self, x):
         """
