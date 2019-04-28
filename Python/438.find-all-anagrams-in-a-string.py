@@ -60,10 +60,10 @@ class Solution(object):
         if lp > ls:
             return []
 
-        det = [0] * 30
+        det = [0] * 256
         for i in range(lp):
-            det[ord(p[i]) - ord('a')] -= 1
-            det[ord(s[i]) - ord('a')] += 1
+            det[ord(p[i])] -= 1
+            det[ord(s[i])] += 1
 
         ans, abs_sum = [], 0
         for item in det:
@@ -75,11 +75,11 @@ class Solution(object):
         i = lp
         while(i< ls):
             r, l = s[i], s[i-lp]
-            abs_sum = abs_sum - abs(det[ord(r) - ord('a')]) - abs(det[ord(l) - ord('a')])
-            det[ord(r) - ord('a')] += 1
-            det[ord(l) - ord('a')] -= 1
+            abs_sum = abs_sum - abs(det[ord(r)]) - abs(det[ord(l)])
+            det[ord(r)] += 1
+            det[ord(l)] -= 1
 
-            abs_sum = abs_sum + abs(det[ord(r) - ord('a')]) + abs(det[ord(l) - ord('a')])
+            abs_sum = abs_sum + abs(det[ord(r)]) + abs(det[ord(l)])
             if abs_sum == 0:
                 ans.append(i - lp +1)
             
