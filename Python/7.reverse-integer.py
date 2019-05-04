@@ -42,14 +42,15 @@
 # 
 #
 class Solution(object):
+    # Your runtime beats 21.28 % of python submissions
     def reverse(self, x):
         """
         :type x: int
         :rtype: int
         """
         
-        if x == 0:
-            return 0
+        if len(str(x)) == 1:
+            return x
 
         neg = 1
         if x < 0:
