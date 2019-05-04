@@ -54,10 +54,13 @@ class Solution:
             return -1
 
         for i in range(lh - ln + 1):
-            for j in range(ln):
+            j = 0
+            while j in range(ln):
                 if haystack[i + j] != needle[j]:
                     break
-            else:
+                else:
+                    j +=1
+            if j == ln:
                 return i
         return -1
 
