@@ -40,6 +40,7 @@
 #
 #
 class Solution:
+    # Your runtime beats 54.39 % of python3 submissions
     def strStr(self, haystack: str, needle: str) -> int:
         if not haystack and not needle:
             return 0
@@ -55,11 +56,11 @@ class Solution:
 
         for i in range(lh - ln + 1):
             j = 0
-            while j in range(ln):
+            while j <ln:
                 if haystack[i + j] != needle[j]:
                     break
-                else:
-                    j +=1
+                j +=1
+
             if j == ln:
                 return i
         return -1

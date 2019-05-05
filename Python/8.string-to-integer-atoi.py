@@ -85,40 +85,34 @@
 # Your runtime beats 99.76 % of python3 submissions
 class Solution:
     def myAtoi(self, str: str) -> int:
-        if not str or len(str) == 0:
+        if not str:
             return 0
-        str = str.strip()
-        if str == "":
+        s = str.strip()
+        if len(s)==0:
             return 0
-        i, n = 0, len(str)
+        i, n = 0, len(s)
         flag = 1
-        if str[i] == "-":
-            flag = -1
-            i += 1
-        elif str[i] == "+":
+        if s[i] in '+-':
+            if s[i] == "-":
+                flag = -1
             i += 1
 
         result = 0
-        isnum = False
-        MaxInt = (1 << 31) - 1
+        MaxInt, MaxMin = (1 << 31) - 1,-(1<<31)
         while i < n:
-            curr = str[i]
-            if curr.isdigit():
+            curr = s[i]
+            if curr in '0123456789':
                 result = result * 10 + int(curr)
                 if result > MaxInt:
                     break
                 i += 1
-                isnum = True
             else:
-                if isnum == False:
-                    return 0
-                else:
-                    break
+                break
 
         result *= flag
         if result > MaxInt:
             return MaxInt
-        if result < MaxInt * -1:
-            return MaxInt * -1 - 1
+        if result < MaxMin:
+            return MaxMin
 
         return result
