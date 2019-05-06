@@ -37,6 +37,33 @@
 
 
 class Solution:
+    # Method 3: Your runtime beats 85.98 % of python3 submissions
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        # corner case
+        if root is None:
+            return []
+        
+        stack, result = [],[]
+        while root:
+            stack.append(root)
+            root = root.left
+        
+        while stack:
+            node = stack[-1]
+            result.append(node.val)
+            if node.right == None:
+                node = stack.pop()
+                while stack and stack[-1].right == node:
+                    node = stack.pop()
+            else:
+                node = node.right
+                while node:
+                    stack.append(node)
+                    node = node.left
+        return result
+
+    
+    '''
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         # corner case
         if root is None:
@@ -74,4 +101,5 @@ class Solution:
         self.inorder(root.left, result)
         result.append(root.val)
         self.inorder(root.right, result)
+    '''
 

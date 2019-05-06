@@ -1,5 +1,5 @@
 #
-# @lc app=leetcode id=234 lang=python3
+# @lc app=leetcode id=234 lang=python
 #
 # [234] Palindrome Linked List
 #
