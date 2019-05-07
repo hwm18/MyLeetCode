@@ -57,7 +57,7 @@ class Solution(object):
         if(n<=2):
             return n
         # Your runtime beats 70.5 % of python submissions
-        f =[1,1,2]
+        f =[1,2]
         for i in range(n-2):
             f.append(f[-1] + f[-2])
         
