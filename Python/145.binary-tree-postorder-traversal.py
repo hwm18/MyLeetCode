@@ -14,6 +14,12 @@ class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         if not root:
             return []
+            
+    '''
+    # Method 1: Your runtime beats 17.47 % of python3 submissions
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
         
         self.result = []
         self.postorder(root)
@@ -26,4 +32,5 @@ class Solution:
         self.postorder(root.left)
         self.postorder(root.right)
         self.result.append(root.val)
+    '''
 
