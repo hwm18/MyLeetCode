@@ -4,6 +4,9 @@
 # [204] Count Primes
 #
 class Solution:
+    # Your runtime beats 20.17 % of python3 submissions
+    # 一种比较好的质数筛选方法：埃拉托斯特尼筛法
+    # 然后定义一个boolean数组记录
     def countPrimes(self, n: int) -> int:
         if n<=1:
             return 0

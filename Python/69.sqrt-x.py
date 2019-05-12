@@ -47,8 +47,10 @@ class Solution(object):
         
         low, hi = 0, x
         while low + 1 < hi:
-            mid = low + (hi - low)/2
-            if mid <= x/mid:
+            mid = low + (hi - low)//2
+            if mid == x//mid:
+                return mid
+            elif mid < x//mid:
                 low = mid
             else:
                 hi = mid

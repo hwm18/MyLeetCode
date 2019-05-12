@@ -4,6 +4,7 @@
 # [155] Min Stack
 #
 class MinStack:
+    # method 2: Your runtime beats 99.85 % of python3 submissions
     def __init__(self):
         """
         initialize your data structure here.
