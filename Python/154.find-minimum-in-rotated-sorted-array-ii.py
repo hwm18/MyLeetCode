@@ -4,6 +4,7 @@
 # [154] Find Minimum in Rotated Sorted Array II
 #
 class Solution(object):
+    # Your runtime beats 47.11 % of python submissions
     def findMin(self, nums):
         """
         :type nums: List[int]
