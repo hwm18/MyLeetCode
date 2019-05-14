@@ -4,7 +4,13 @@
 # [658] Find K Closest Elements
 #
 class Solution(object):
-    # Your runtime beats 56.47 % of python submissions
+    # solution 3:  Your runtime beats 36.92 % of python submissions
+    def findClosestElements(self, arr, k, x):
+        arr = sorted(arr, key = lambda y: abs(x-y))
+        return sorted(arr[:k])
+
+    '''
+    # Solution 2: Your runtime beats 56.47 % of python submissions
     def findClosestElements(self, arr, k, x):
         """
         :type arr: List[int]
@@ -35,9 +41,10 @@ class Solution(object):
                 end = mid
         
         return arr[start:start+k]
+    '''
 
     '''
-    #   Your runtime beats 43.01 % of python submissions
+    # solution 1:  Your runtime beats 43.01 % of python submissions
     def findClosestElements(self, arr, k, x):
         """
         :type arr: List[int]
