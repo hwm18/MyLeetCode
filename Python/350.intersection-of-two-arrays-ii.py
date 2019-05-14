@@ -4,26 +4,23 @@
 # [350] Intersection of Two Arrays II
 #
 class Solution:
+    # Your runtime beats 91.65 % of python3 submissions
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         if not nums1 or not nums2:
             return []
         # method 2
         cnt, result = {}, []
         for n in nums1:
-            if n not in cnt:
-                cnt[n] =1
-            else:
-                cnt[n] +=1
-            
+            cnt[n] = cnt.get(n, 0) + 1
+
         for m in nums2:
-            if m in cnt and cnt[m] >0:
+            if m in cnt and cnt[m] > 0:
                 result.append(m)
-                cnt[m] -=1
-            
+                cnt[m] -= 1
+
         return result
 
-
-        ''' method 1
+        """ method 1
         nums1.sort()
         nums2.sort()
         i,j=0,0
@@ -39,6 +36,5 @@ class Solution:
                 j +=1
         
         return result
-        '''
-
+        """
 
