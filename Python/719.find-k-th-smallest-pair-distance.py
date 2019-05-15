@@ -67,7 +67,6 @@ class Solution(object):
         nums.sort()
         lo = 0
         hi = nums[-1] - nums[0]
-
         while lo < hi:
             mid = (lo + hi) // 2
             # If `mid` produced `k` or more results we know it's the upper bound.

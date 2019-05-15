@@ -54,6 +54,7 @@
 #         self.right = None
 
 class Solution(object):
+    # Soluiton 1: Your runtime beats 95.91 % of python submissions
     def searchBST(self, root, val):
         """
         :type root: TreeNode
