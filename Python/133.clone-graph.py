@@ -64,14 +64,14 @@ class Solution(object):
     def cloneGraph1(self, node):
         if not node:
             return
-        nodeCopy = UndirectedGraphNode(node.label)
+        nodeCopy = Node(node.val)
         dic = {node: nodeCopy}
         queue = collections.deque([node])
         while queue:
             node = queue.popleft()
             for neighbor in node.neighbors:
                 if neighbor not in dic:  # neighbor is not visited
-                    neighborCopy = UndirectedGraphNode(neighbor.label)
+                    neighborCopy = Node(neighbor.val)
                     dic[neighbor] = neighborCopy
                     dic[node].neighbors.append(neighborCopy)
                     queue.append(neighbor)
@@ -83,14 +83,14 @@ class Solution(object):
     def cloneGraph2(self, node):
         if not node:
             return
-        nodeCopy = UndirectedGraphNode(node.label)
+        nodeCopy = Node(node.val)
         dic = {node: nodeCopy}
         stack = [node]
         while stack:
             node = stack.pop()
             for neighbor in node.neighbors:
                 if neighbor not in dic:
-                    neighborCopy = UndirectedGraphNode(neighbor.label)
+                    neighborCopy = Node(neighbor.val)
                     dic[neighbor] = neighborCopy
                     dic[node].neighbors.append(neighborCopy)
                     stack.append(neighbor)
@@ -102,7 +102,7 @@ class Solution(object):
     def cloneGraph(self, node):
         if not node:
             return
-        nodeCopy = UndirectedGraphNode(node.label)
+        nodeCopy = Node(node.val)
         dic = {node: nodeCopy}
         self.dfs(node, dic)
         return nodeCopy
@@ -110,7 +110,7 @@ class Solution(object):
     def dfs(self, node, dic):
         for neighbor in node.neighbors:
             if neighbor not in dic:
-                neighborCopy = UndirectedGraphNode(neighbor.label)
+                neighborCopy = Node(neighbor.val)
                 dic[neighbor] = neighborCopy
                 dic[node].neighbors.append(neighborCopy)
                 self.dfs(neighbor, dic)
