@@ -21,7 +21,8 @@
 # 
 #
 class Solution(object):
-    #   √ Your runtime beats 77.23 % of python submissions
+    '''
+    # Solution 1:  √ Your runtime beats 77.23 % of python submissions
     def hasCycle(self, head):
         """
         :type head: ListNode
@@ -40,6 +41,20 @@ class Solution(object):
             if slow == fast:
                 return True
         return False
+    '''
 
+    # Soluiton 2: Your runtime beats 98.65 % of python submissions
+    def hasCycle(self, head):
+        if not head or head.next==None:
+            return False
 
+        try:
+            slow = head
+            fast = head.next
+            while slow is not fast:
+                slow = slow.next
+                fast = fast.next.next
+            return True
+        except:
+            return False
 

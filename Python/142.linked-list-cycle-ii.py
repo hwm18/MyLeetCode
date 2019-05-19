@@ -42,15 +42,24 @@ class Solution(object):
         
     
     ''' Method 2: # Your runtime beats 26.24 % of python submissions
-        self.slow, self.fast = None, None
-        if not (self.hasCycle(head)):
+    def detectCycle(self, head):
+        try:
+            fast = head.next
+            slow = head
+            while fast is not slow:
+                fast = fast.next.next
+                slow = slow.next
+        except:
+            # if there is an exception, we reach the end and there is no cycle
             return None
 
-        self.slow = head
-        while self.fast!=self.slow:
-            self.fast = self.fast.next
-            self.slow = self.slow.next
-        return self.slow
+        # since fast starts at head.next, we need to move slow one step forward
+        slow = slow.next
+        while head is not slow:
+            head = head.next
+            slow = slow.next
+
+        return head
 
     def hasCycle(self, head):
         """

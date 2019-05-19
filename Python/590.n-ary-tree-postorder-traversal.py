@@ -39,6 +39,7 @@ class Node(object):
         self.children = children
 """
 class Solution(object):
+    # soluiton 1: Your runtime beats 53.68 % of python submissions
     def postorder(self, root):
         """
         :type root: Node
@@ -46,7 +47,7 @@ class Solution(object):
         """
         if not root:
             return []
-            
+
         self.ans = []
         self.helper(root)
         return self.ans
