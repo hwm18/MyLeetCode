@@ -40,7 +40,20 @@
 #
 #
 class Solution:
-    # Your runtime beats 54.39 % of python3 submissions
+    # solution 2:
+    def strStr(self, haystack, needle):
+        if needle == "":
+            return 0
+        for i in range(len(haystack)-len(needle)+1):
+            for j in range(len(needle)):
+                if haystack[i+j] != needle[j]:
+                    break
+                if j == len(needle)-1:
+                    return i
+        return -1
+
+    '''
+    # Solution 1: Your runtime beats 54.39 % of python3 submissions
     def strStr(self, haystack: str, needle: str) -> int:
         if not haystack and not needle:
             return 0
@@ -64,4 +77,5 @@ class Solution:
             if j == ln:
                 return i
         return -1
+    '''
 
