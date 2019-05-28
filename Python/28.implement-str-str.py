@@ -40,7 +40,7 @@
 #
 #
 class Solution:
-    # solution 2:
+    # solution 2: √ Your runtime beats 54.9 % of python3 submissions
     def strStr(self, haystack, needle):
         if needle == "":
             return 0

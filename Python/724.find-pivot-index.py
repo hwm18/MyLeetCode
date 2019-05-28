@@ -61,6 +61,7 @@
 # 
 #
 class Solution(object):
+    # soluiton 2: Your runtime beats 63.41 % of python submissions
     def pivotIndex(self, nums):
         """
         :type nums: List[int]
