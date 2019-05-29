@@ -33,6 +33,20 @@
 # Your runtime beats 77.64 % of python3 submissions
 class Solution:
     # 看看变化的过程中，是否出现重复，若出现，则代表不是快乐数
+    # solution 2: use hash set
+    # √ Your runtime beats 96.79 % of python3 submissions
+    # √ Your memory usage beats 50.9 % of python3 submissions (13.1 MB)
+    def isHappy(self, n: int) -> bool:
+        s = set()
+        while True:
+            s.add(n)
+            n = sum(int(x)*int(x) for x in list(str(n)))
+            if n == 1 or n in s:
+                break
+        return n == 1
+
+    '''
+    # soluiton 1: use hashmap: Your runtime beats 62.54 % of python3 submissions
     def isHappy(self, n: int) -> bool:
         d = {}
         while True:
@@ -42,4 +56,5 @@ class Solution:
                 break
 
         return n == 1
+    '''
 

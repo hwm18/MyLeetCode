@@ -30,13 +30,15 @@
 # 
 #
 class Solution(object):
-    # Soluiton 1: hashmap - Your runtime beats 61.4 % of python submissions
+    # Soluiton 1: hashmap - Your runtime beats 82.48 % of python submissions
     def twoSum(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: List[int]
         """
+        if not nums or len(nums)==0:
+            return []
         map = {}
         for i, num in enumerate(nums):
             if num in map:
@@ -44,7 +46,7 @@ class Solution(object):
             else:
                 map[target - num] = i
 
-        return -1, -1
+        return []
 
     '''
     def twoSum(self, nums, target):

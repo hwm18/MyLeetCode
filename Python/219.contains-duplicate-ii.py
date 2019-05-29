@@ -46,7 +46,7 @@
 #
 #
 class Solution(object):
-    # Your runtime beats 50.93 % of python submissions
+    # Soluiton 1: Your runtime beats 50.93 % of python submissions
     def containsNearbyDuplicate(self, nums, k):
         """
         :type nums: List[int]
@@ -61,4 +61,24 @@ class Solution(object):
                 return True
             dic[v] = i
         return False
+    
+    '''
+    # soluiton 2: Time Limit Exceeded. 22/23 cases passed (N/A)
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        if not nums or len(nums) < 2:
+            return False
+
+        n = len(nums)
+        
+        for i in range(n):
+            for j in range(1,k+1):
+                if i+j < n and nums[i] == nums[i+j]:
+                    return True
+        return False
+    '''
 
