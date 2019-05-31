@@ -56,7 +56,7 @@
 # 
 #
 class Solution(object):
-    # Your runtime beats 51.32 % of python submissions
+    #  solution 1:Your runtime beats 51.32 % of python submissions
     def findRestaurant(self, list1, list2):
         """
         :type list1: List[str]
