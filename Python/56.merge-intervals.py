@@ -34,6 +34,7 @@
 # 
 #
 class Solution(object):
+    # solution: our runtime beats 61.12 % of python submissions
     def merge(self, intervals):
         """
         :type intervals: List[List[int]]
@@ -43,7 +44,6 @@ class Solution(object):
             return intervals
         
         intervals = sorted(intervals, key = lambda x: x[0])
-
         result = []
         for item in intervals:
             if len(result) ==0 or result[-1][1] < item[0]:
