@@ -15,41 +15,58 @@
 #
 # Given a string, find the length of the longest substring without repeating
 # characters.
-# 
-# 
+#
+#
 # Example 1:
-# 
-# 
+#
+#
 # Input: "abcabcbb"
-# Output: 3 
-# Explanation: The answer is "abc", with the length of 3. 
-# 
-# 
-# 
+# Output: 3
+# Explanation: The answer is "abc", with the length of 3.
+#
+#
+#
 # Example 2:
-# 
-# 
+#
+#
 # Input: "bbbbb"
 # Output: 1
 # Explanation: The answer is "b", with the length of 1.
-# 
-# 
-# 
+#
+#
+#
 # Example 3:
-# 
-# 
+#
+#
 # Input: "pwwkew"
 # Output: 3
-# Explanation: The answer is "wke", with the length of 3. 
+# Explanation: The answer is "wke", with the length of 3.
 # ⁠            Note that the answer must be a substring, "pwke" is a
 # subsequence and not a substring.
-# 
-# 
-# 
-# 
-# 
+#
+#
+#
+#
+#
 #
 class Solution(object):
+    # two points: Your runtime beats 86.8 % of python submissions
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        start, ans = 0, 0
+        count = {}
+        for end in range(len(s)):
+            c = s[end]
+            if c in count:
+                start = max(start, count[c] + 1)
+            count[c] = end
+            ans = max(ans, end - start + 1)
+        return ans
+
+    '''
     # solution 4: two points - Your runtime beats 93.13 % of python submissions
     def lengthOfLongestSubstring(self, s):
         """
@@ -70,10 +87,11 @@ class Solution(object):
                 # and if 'window_start' is already ahead of the last index of 'right_char', we'll keep 'window_start'
                 window_start = max(window_start, char_index_map[right_char] + 1)
             # insert the 'right_char' into the map
-            char_index_map[s[window_end]] = window_end
+            char_index_map[right_char] = window_end
             # remember the maximum length so far
             max_length = max(max_length, window_end - window_start + 1)
         return max_length
+    '''
 
     '''
     # solution 3: two points - Your runtime beats 43.25 % of python submissions
@@ -143,8 +161,4 @@ class Solution(object):
             ans = max(ans, len(d))
         return ans
     '''
-            
-            
-                
-        
 
