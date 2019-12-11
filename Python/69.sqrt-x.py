@@ -50,7 +50,8 @@ class Solution(object):
             mid = low + (hi - low)//2
             if mid == x//mid:
                 return mid
-            elif mid < x//mid:
+            
+            if mid < x//mid:
                 low = mid
             else:
                 hi = mid

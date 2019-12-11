@@ -44,12 +44,23 @@ class Solution(object):
             return intervals
         
         intervals = sorted(intervals, key = lambda x: x[0])
-        result = []
+        result = []        
         for item in intervals:
             if len(result) ==0 or result[-1][1] < item[0]:
-               result.append(item)
+                result.append(item)
             else:
                 result[-1][1] = max(result[-1][1], item[1])
+        # pre = intervals[0]
+        # for i in range(1, len(intervals)):
+        #     curr = intervals[i]
+        #     if curr[0]>pre[1]:
+        #         result.append(pre)
+        #         pre = curr
+        #     else:
+        #         pre[0] = min(pre[0], curr[0])
+        #         pre[1] = max(pre[1], curr[1])
+
+        # result.append(pre)
                 
         return result
 

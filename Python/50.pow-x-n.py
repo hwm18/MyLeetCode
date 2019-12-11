@@ -66,9 +66,9 @@ class Solution(object):
             result *= x 
         
         return result
-       '''
+    '''
 
-    # Your runtime beats 96.63 % of python submissions
+    # Your runtime beats 76.1 % of python submissions
     def myPow(self, x, n):
         """
         :type x: float
@@ -79,15 +79,35 @@ class Solution(object):
             n = -n
             x = 1/x
 
-        result, temp = 1, x
-        while(n!=0):
-            if n % 2 ==1:
-                result *= temp
+        result = 1
+        while n:
+            if n & 1:
+                result *= x
 
-            temp *= temp
-            n /=2
+            x *= x
+            n >>= 1
         
         return result
+
+    '''
+    # Your runtime beats 43.99 % of python submissions
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        if not n:
+            return 1
+        
+        if n<0:
+            return 1/self.myPow(x,-n)
+        
+        if n%2:
+            return x * self.myPow(x, n-1)
+        
+        return self.myPow(x * x, n//2)
+    '''
 
 
            
