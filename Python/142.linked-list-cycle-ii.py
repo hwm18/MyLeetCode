@@ -39,9 +39,9 @@ class Solution(object):
                     fast = fast.next
                 return head
         return None
-        
-    
-    ''' Method 2: # Your runtime beats 26.24 % of python submissions
+
+    ''' 
+    #Method 2: # Your runtime beats 26.24 % of python submissions
     def detectCycle(self, head):
         try:
             fast = head.next
