@@ -41,10 +41,29 @@
 # 
 #
 class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int        
+        """
+        if n ==0 or n==1:
+            return 1
+        catch = [ 0 for _ in range(n+1)]
+        catch[0]= 1
+        catch[1] = 1
+        #catch[2] = 2
+        for i in range(2, n+1):
+            if catch[i] != 0:
+                return catch[i]
+           
+            catch[i] = self.climbStairs(i-1) + self.climbStairs(i-2)
+        return catch[n]
+
     '''
     考虑最后一步走1阶还是走2阶。
     方案数Dp[n] = 最后一步走1阶的方案数 + 最后一步走2阶的方案数。
     Dp[n] = Dp[n-1] + Dp[n-2].
+    '''
     '''
     def climbStairs(self, n):
         """
@@ -62,6 +81,7 @@ class Solution(object):
             f.append(f[-1] + f[-2])
         
         return f[-1]
+    '''
 
     # Your runtime beats 70.5 % of python submissions
     '''
