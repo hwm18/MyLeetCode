@@ -45,8 +45,9 @@ class Solution(object):
         if x == 0 or x ==1:
             return x
         
-        low, hi = 0, x
-        while low + 1 < hi:
+        low, hi = 0, x // 2 + 1 # Your runtime beats 92.5 % of python submissions
+        #low,hi = 0, x # Your runtime beats 58.47 % of python submissions
+        while low + 1 < hi: 
             mid = low + (hi - low)//2
             if mid == x//mid:
                 return mid
