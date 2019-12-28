@@ -82,8 +82,10 @@
 # integer.
 # Thefore INT_MIN (−2^31) is returned.
 #
-# Your runtime beats 99.76 % of python3 submissions
+
 class Solution:
+    '''
+    # Solution 1: Your runtime beats 99.76 % of python3 submissions
     def myAtoi(self, str: str) -> int:
         if not str:
             return 0
@@ -116,3 +118,29 @@ class Solution:
             return MaxMin
 
         return result
+    '''
+
+    # solution 2: Your runtime beats 84.12 % of python3 submissions
+    def myAtoi(self, str: str) -> int:
+        ###better to do strip before sanity check (although 8ms slower):
+        #ls = list(s.strip())
+        #if len(ls) == 0 : return 0
+        if not str or str==" ":
+            return 0
+
+        str = str.strip()       
+        if len(str) == 0: 
+            return 0
+
+        ls = list(str.strip())
+        
+        sign = -1 if ls[0] == '-' else 1
+        if ls[0] in ['-','+'] : del ls[0]
+
+        ret, i = 0, 0
+        while i < len(ls) and ls[i].isdigit():
+            ret = ret*10 + ord(ls[i]) - ord('0')
+            i += 1
+
+        return max(-2**31, min(sign * ret, 2**31-1))
+        

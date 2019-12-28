@@ -66,60 +66,47 @@ class Solution(object):
     def reverseWords(self, s):
         return " ".join(s.strip().split()[::-1])
     """
-
-    # solution 2:
+    
+    '''
+    # solution 2: Your runtime beats 64.71 % of python submissions
     def reverseWords(self, s):
         # strip()去掉s头尾的空格，split()按照空格分割字符串，reversed翻转，''.join按照空格连接字符串
         return " ".join(reversed(s.strip().split()))
 
+    '''
+
+    # Solution 1: Your runtime beats 64.71 % of python submissions
     def reverseWords(self, s):
         """
         :type s: str
         :rtype: str
         """
         # Here sentence is a null-terminated string ending with char '\0'
-        if not s or len(s) == 0 or s == "\0":
-            return
+        if not s or len(s) == 0: #or s == "\0":
+            return s
 
         s = s.strip()
-        # step1: reverse the string
-        #  To reverse all words in the string, we will first reverse
-        #  the string. Now all the words are in the desired location, but
-        #  in reverse order: "Hello World" -> "dlroW olleH".
-        self.str_rev(s, 0, len(s) - 2)
+        if s == "":
+            return s
 
-        # step2: reverse word by word
-        # Now, let's iterate the sentence and reverse each word in place.
-        # "dlroW olleH" -> "World Hello"
-        start = 0
-        end = 0
-        while True:
-            # find the  start index of a word while skipping spaces.
-            while s[start] == " ":
-                start += 1
-
-            if s[start] == "\0":
-                break
-
-            # find the end index of the word.
-            end = start + 1
-            while s[end] != "\0" and s[end] != " ":
-                end += 1
-
-            # let's reverse the word in-place.
-            self.str_rev(s, start, end - 1)
-            start = end
+        # keep only one space for words
+        arr = s.split()
+        results = []
+        for i in range(len(arr)-1,-1,-1):
+            if arr[i] !="":
+                results.append(arr[i])
+        
+        return " ".join(results)
 
     def str_rev(self, str, start, end):
         if str == None or len(str) < 2:
             return
-
+        
+        l =list(str)
         while start < end:
-            temp = str[start]
-            # TypeError: 'unicode' object does not support item assignment
-            str[start] = str[end]
-            str[end] = temp
+            l[start], l[end] = l[end], l[start]  # swap the start and end
 
             start += 1
             end -= 1
+        return ''.join(l)
 

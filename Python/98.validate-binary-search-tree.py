@@ -11,12 +11,33 @@
 #         self.right = None
 
 class Solution:
-    # Method 3: Your runtime beats 53.25 % of python3 submissions
+    # solution 5: Your runtime beats 81.74 % of python3 submissions
     def isValidBST(self, root: TreeNode) -> bool:
         if not root:
             return True
-        isBST, minNode, maxNode = self.divideConquer(root)
-        return isBST
+        min_val,max_val = -math.inf,math.inf
+        return self.helperBST(root, min_val,max_val)
+    
+    def helperBST(self, root, min_value, max_value):
+        if not root:
+            return True
+
+        if root.val<=min_value or root.val>=max_value:
+            return False
+        
+        left = self.helperBST(root.left, min_value, root.val)
+        right = self.helperBST(root.right, root.val, max_value)
+        if not left or not right:
+            return False
+        
+        return True
+
+    # # Method 3: Your runtime beats 53.25 % of python3 submissions
+    # def isValidBST(self, root: TreeNode) -> bool:
+    #     if not root:
+    #         return True
+    #     isBST, minNode, maxNode = self.divideConquer(root)
+    #     return isBST
     
     def divideConquer(self, root):
         if root is None:

@@ -11,7 +11,7 @@
 #         self.right = None
 
 class Solution:
-    # Your runtime beats 53.85 % of python3 submissions
+    # Soluiton 1: divid conque - Your runtime beats 53.85 % of python3 submissions
     def maxDepth(self, root: TreeNode) -> int:
         if not root:
             return 0

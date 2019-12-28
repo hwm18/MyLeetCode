@@ -41,6 +41,8 @@
 # 
 #
 class Solution(object):
+    '''
+    # Solution 3: Time Limit Exceeded - 10/45 cases passed (N/A)
     def climbStairs(self, n):
         """
         :type n: int
@@ -58,6 +60,7 @@ class Solution(object):
            
             catch[i] = self.climbStairs(i-1) + self.climbStairs(i-2)
         return catch[n]
+    '''
 
     '''
     考虑最后一步走1阶还是走2阶。
@@ -83,8 +86,7 @@ class Solution(object):
         return f[-1]
     '''
 
-    # Your runtime beats 70.5 % of python submissions
-    '''
+    # Your runtime beats 88.69 % of python submissions
     def climbStairs(self, n):
         """
         :type n: int
@@ -94,11 +96,10 @@ class Solution(object):
             return 1
                 
         f = [1,1]        
-        for i in range(2,n+1):
+        for _ in range(2,n+1):
             f.append(f[-1] + f[-2])
         
         return f[-1]
-    '''
 
 
         
