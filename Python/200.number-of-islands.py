@@ -34,6 +34,8 @@
 
 # @lc code=start
 class Solution:
+    # solution: Iterate through each of the cell and if it is an island, 
+    # do dfs to mark all adjacent islands, then increase the counter by 1.
     def numIslands(self, grid: List[List[str]]) -> int:
         if not grid or len(grid) == 0:
             return 0
@@ -61,7 +63,7 @@ class Solution:
         ):
             return
 
-        grid[row][col] = "0"
+        grid[row][col] = "0" # or '#' - update the element value
 
         # Your runtime beats 42.71 % of python3 submissions
         # for i in range(4):
