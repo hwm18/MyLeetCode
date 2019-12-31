@@ -23,10 +23,13 @@ class Solution:
                 idx -=1
                 l2 -=1
 
-        while l2>=0:
-            nums1[idx] = nums2[l2]
-            idx -=1
-            l2 -=1
+        # while l2>=0:
+        #     nums1[idx] = nums2[l2]
+        #     idx -=1
+        #     l2 -=1
+        #if l1<0:
+        if l2>=0:
+            nums1[:l2+1]=nums2[:l2+1]
 
 
            
