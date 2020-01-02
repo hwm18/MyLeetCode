@@ -89,7 +89,8 @@
 # 
 #
 class Solution(object):
-    # solution: slide window - Your runtime beats 51.16 % of python submissions
+    '''
+    # solution 1: slide window - Your runtime beats 51.16 % of python submissions
     def totalFruit(self, tree):
         """
         :type tree: List[int]
@@ -109,6 +110,32 @@ class Solution(object):
             ans = max(ans, end - start +1)
 
         return ans
+    '''
 
-        
+    # Solution 2:  Your runtime beats 93.58 % of python submissions
+    # I have 2 baskets b1 and b2 with the count of fruits b1N, b2N
+    # If I encounter a fruit b2 (which is the “front” basket), I simply add it to the basket.
+    # If I encounter a fruit b1, I swap the baskets and update the counts.
+    # If I encounter a different fruit, I drop the basket b1 and b2 becomes the new b1. In this case, 
+    # the new count b1N will be only b2NCons (which was the count of consecutive b2)
+    def totalFruit(self, tree):
+        """
+        :type tree: List[int]
+        :rtype: int
+        """ 
+        b1, b2, b1N, b2N, b2NCons, maxPick = None, None, 0, 0, 0, 0
+
+        for fruit in tree:
+            if fruit == b2:
+                b2N, b2NCons = b2N + 1, b2NCons + 1
+
+            elif fruit == b1:
+                b1, b2, b1N, b2N, b2NCons = b2, b1, b2N, b1N+1, 1
+
+            else:
+                b1, b2, b1N, b2N, b2NCons = b2, fruit, b2NCons, 1, 1
+
+            maxPick = max(maxPick, b1N+b2N)
+
+        return maxPick
 
