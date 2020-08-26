@@ -11,6 +11,8 @@
 #         self.right = None
 
 class Solution:
+    '''
+    # solution 3: divide -conque
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         result = []
         if not root:
@@ -28,7 +30,19 @@ class Solution:
             if item:
                 result.append(item)
         return result
+    '''
 
+    # Your runtime beats 19.12 % of python3 submissions
+    def preorderTraversal(self, root):
+        ret = []
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                ret.append(node.val)
+                stack.append(node.right)
+                stack.append(node.left)
+        return ret
 
     '''
     # Method 2: Your runtime beats 84.45 % of python3 submissions

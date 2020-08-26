@@ -7,6 +7,7 @@
 # @lc code=start
 class Solution:
     # find mountain O(logN); find longest mountain O(N)
+    # Your runtime beats 77.96 % of python3 submissions
     def longestMountain(self, A: List[int]) -> int:
         if not A or len(A)==0:
             return 0
