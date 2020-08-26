@@ -37,12 +37,12 @@ class Solution:
             self.helper(root.right, sum-root.val, currPath+[root.val], results)
     
     def pathSum2(self, root, sum):
-    if not root:
-        return []
-    if not root.left and not root.right and sum == root.val:
-        return [[root.val]]
-    tmp = self.pathSum(root.left, sum-root.val) + self.pathSum(root.right, sum-root.val)
-    return [[root.val]+i for i in tmp]
+        if not root:
+            return []
+        if not root.left and not root.right and sum == root.val:
+            return [[root.val]]
+        tmp = self.pathSum(root.left, sum-root.val) + self.pathSum(root.right, sum-root.val)
+        return [[root.val]+i for i in tmp]
 
 # BFS + queue    
 def pathSum3(self, root, sum): 
