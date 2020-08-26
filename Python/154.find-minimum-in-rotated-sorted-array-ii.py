@@ -13,6 +13,7 @@ class Solution(object):
                 start = mid
             else:
                 end = mid if nums[end] != nums[mid] else end - 1
+                
         if nums[start] < nums[end]:
             return nums[start]
         return nums[end]
