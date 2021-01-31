@@ -44,7 +44,14 @@ class Solution:
     def strStr(self, haystack, needle):
         if not needle or len(needle) == 0:
             return 0
-        lh,ln=len(haystack),len(needle)    
+        
+        if not haystack or len(haystack) ==0:
+            return -1
+
+        lh,ln=len(haystack),len(needle)
+        if lh < ln:
+            return -1
+              
         for i in range(lh-ln+1):
             for j in range(ln):
                 if haystack[i+j] != needle[j]:

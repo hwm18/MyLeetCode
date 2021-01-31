@@ -64,6 +64,7 @@ class Solution:
         2. 如果含有小数点, 则小数点前后至少有一个数字, 一个孤立的小数点是非法的.
         3. 如果含有 e/E, 则它的前后必须有数字.
     """
+    '''
     # Your runtime beats 100 % of python3 submissions
     def isNumber(self, s: str) -> bool:
         if not str or len(s) == 0:
@@ -104,4 +105,49 @@ class Solution:
             else:
                 return False
         return num
+    '''
+
+
+    '''
+    1482/1482 cases passed (28 ms)
+    Your runtime beats 94.86 % of python3 submissions
+    Your memory usage beats 95.89 % of python3 submissions (14 MB)
+    '''
+    def isNumber(self, s: str) -> bool:
+        if not str or len(s) == 0:
+            return False
+        
+        s = s.strip()
+        i, ln = 0, len(s)
+        # while(i<ln and s[i]==' '):
+        #     i+=1
+        
+        if s[i] in '+-':
+            i +=1
+        
+        isNum = False
+        while (i<ln and s[i].isdigit()):
+            i+=1
+            isNum = True
+        
+        if (i<ln and s[i] == '.'):
+            i+= 1
+            while(i<ln and s[i].isdigit()):
+                i+=1
+                isNum = True
+        
+        if (isNum and i<ln and s[i] in 'Ee'):
+            i+= 1
+            isNum = False
+            if(i<ln and s[i] in '+-'):
+                i += 1
+            while(i<ln and s[i].isdigit()):
+                i+=1
+                isNum = True
+
+        # while(i<ln and s[i]==' '):
+        #     i+=1
+        return isNum and i==ln
+        
+
 

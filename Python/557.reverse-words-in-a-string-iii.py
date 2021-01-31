@@ -33,7 +33,6 @@ class Solution(object):
     # def reverseWords(self, s):
 	# 	return ' '.join([word[::-1] for word in s.split(' ')])     
         
-
     # solution 1: Your runtime beats 14.33 % of python submissions
     def reverseWords(self, s):
         """
@@ -57,4 +56,5 @@ class Solution(object):
         if word != "":
             answer += word[::-1]
         return answer
+    
 

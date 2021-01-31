@@ -57,7 +57,7 @@ class Solution(object):
         return []
     '''
 
-    # dictionary - Your runtime beats 58.88 % of python submissions
+    # hashmap - Your runtime beats 58.88 % of python submissions
     def twoSum(self, numbers, target):
         dic = {}
         for i, num in enumerate(numbers):

@@ -33,6 +33,32 @@
 #
 #
 class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        if not s or len(s) == 0:
+            return True
+
+        s = s.strip()
+        start, end = 0, len(s)-1
+        while start < end:
+            while start < end and (not s[start].isalpha() and not s[start].isdigit()):
+                start += 1
+
+            while start < end and (not s[end].isalpha() and not s[end].isdigit()):
+                end -= 1
+
+            if start >= end:
+                return True
+            
+            if s[start].lower() == s[end].lower():
+                start += 1
+                end -= 1
+            else:
+                return False
+        
+        return True
+
+
+    '''
     # Your runtime beats 63.47 % of python3 submissions
     def isPalindrome(self, s: str) -> bool:
         if not s or len(s) == 0:
@@ -57,4 +83,5 @@ class Solution:
                 return False
 
         return True
+    '''
 
