@@ -32,24 +32,44 @@ class Solution:
     @param: upper: An integer
     @return: a list of its missing ranges
     """
+    '''
     def findMissingRanges(self, nums, lower, upper):
         # write your code here
         result = []
+        # nums is empty
         if(not nums or len(nums) == 0):
             result.append(self.helper(lower, upper))
             return result
         
+        # Edge case 1) Missing ranges at the beginning, it is in lower-1
         pre_point = lower -1
         for point in nums:
             if pre_point != point and pre_point+1 != point:
                 result.append(self.helper(pre_point+1, point-1))
-           
             pre_point = point
         
+        #  Edge case 2) Missing ranges at the end
         if nums[-1] < upper:
             result.append(self.helper(nums[-1] + 1, upper))
                        
         return result
+    '''
+
+    def findMissingRanges(self, nums, lower, upper):
+        # write your code here
+        result = []
+        ln = len(nums)
+        # Edge case 1) Missing ranges at the beginning, it is in lower-1
+        pre = lower -1
+        for i in range(ln+1):
+            # Edge case 2) Missing ranges at the end
+            curr = upper+1 if i==ln else nums[i]
+            if curr - pre > 1:
+                result.append(self.helper(pre+1, curr-1))
+            pre = curr
+       
+        return result
+
             
     def helper(self, left_point, right_point):
         if left_point == right_point:

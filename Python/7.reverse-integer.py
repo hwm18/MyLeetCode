@@ -42,14 +42,17 @@
 # 
 #
 class Solution(object):
-    # Your runtime beats 21.28 % of python submissions
+    '''
+    1032/1032 cases passed (32 ms)
+    Your runtime beats 9.44 % of python submissions
+    Your memory usage beats 40.77 % of python submissions (13.4 MB)
+    '''
     def reverse(self, x):
         """
         :type x: int
         :rtype: int
         """
-        
-        if len(str(x)) == 1:
+        if not x or len(str(x)) <= 1:
             return x
 
         neg = 1
@@ -62,10 +65,10 @@ class Solution(object):
             x //= 10
 
         result *= neg
-        if result < -(1<<31) or result > (1<<31) -1:
+        if (abs(result)>(1<<31)):
             return 0
 
         return result
+    
 
-        
 
