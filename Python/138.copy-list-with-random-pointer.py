@@ -96,7 +96,12 @@ class Solution(object):
         return newhead
     '''
 
-    # soluiton 2: Your runtime beats 70.2 % of python submissions
+    '''
+    soluiton 2: 
+    19/19 cases passed (44 ms)
+    Your runtime beats 57.36 % of python submissions
+    Your memory usage beats 73.84 % of python submissions (14.3 MB)
+    '''
     def copyRandomList(self, head):
         if not head:
             return None
@@ -104,10 +109,11 @@ class Solution(object):
         # copy node
         p = head
         while p:
-            node = Node(p.val, None,None)
-            node.next = p.next
-            p.next = node
-            p = p.next.next
+            copy = Node(p.val, None,None)
+            next = p.next            
+            p.next = copy
+            copy.next = next
+            p = next
 
         # copy random
         p = head

@@ -11,6 +11,54 @@
 #         self.right = None
 
 class Solution:
+    # in-order traver
+    '''
+    77/77 cases passed (40 ms)
+    Your runtime beats 90.47 % of python3 submissions
+    Your memory usage beats 23.92 % of python3 submissions (17 MB)
+    '''
+    def isValidBST(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+
+        self.pre = None
+        return self.helper(root)
+    
+    def helper(self, root):
+        if not root:
+            return True
+        
+        if(self.helper(root.left)):
+            if self.pre and self.pre.val >= root.val:
+                return False
+            self.pre = root
+            return self.helper(root.right)
+
+        return False
+
+
+
+    '''
+    77/77 cases passed (36 ms)
+    Your runtime beats 97.37 % of python3 submissions
+    Your memory usage beats 56.35 % of python3 submissions (16.5 MB)
+    '''
+    '''
+    def isValidBST(self, root: TreeNode) -> bool:
+        if not root:
+            return True
+        
+        return self.helper(root, None, None)
+
+
+    def helper(self, root, low, high):
+        if not root:
+            return True
+        
+        return (low==None or root.val>low) and (high==None or root.val<high) and self.helper(root.left, low, root.val) and self.helper(root.right, root.val, high)
+    '''
+
+    '''
     # solution 5: Your runtime beats 81.74 % of python3 submissions
     def isValidBST(self, root: TreeNode) -> bool:
         if not root:
@@ -56,7 +104,8 @@ class Solution:
         minNode = left_minNode if left_minNode is not None else root
         maxNode = right_maxNode if right_maxNode is not None else root
         return True, minNode, maxNode
-    
+    '''
+
     '''
     # Method2:  Your runtime beats 18.98 % of python3 submissions
     def isValidBST(self, root: TreeNode) -> bool:

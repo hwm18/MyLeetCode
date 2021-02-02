@@ -44,6 +44,32 @@
 #
 #
 class Solution:
+    '''
+    11510/11510 cases passed (80 ms)
+    Your runtime beats 22.93 % of python3 submissions
+    Your memory usage beats 51.67 % of python3 submissions (14.3 MB)
+    '''
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        
+        div = 1
+        while (x//div>=10):
+            div *= 10
+        
+        while x != 0:
+            l = x //div
+            r = x%10
+            if l != r:
+                return False
+            
+            x = x%div//10            
+            div //=100
+        
+        return True
+
+    
+    '''
     # Your runtime beats 89.86 % of python3 submissions
     # 翻转整数，判断是否相等
     def isPalindrome(self, x: int) -> bool:
@@ -60,6 +86,7 @@ class Solution:
             temp_x //= 10
 
         return new_x == x
+    '''
 
     """
     # Your runtime beats 79.56 % of python3 submissions

@@ -37,6 +37,32 @@
 
 
 class Solution(object):
+    '''
+    55/55 cases passed (20 ms)
+    Your runtime beats 60.46 % of python submissions
+    Your memory usage beats 9.59 % of python submissions (13.6 MB)
+    '''
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        dummy.next = head
+        pre = dummy
+        while head and head.next:
+            next = head.next
+            head.next = next.next
+            next.next = head
+
+            pre.next = next
+            pre = head
+            head = head.next
+        
+        return dummy.next
+
+
+    '''
     def swapPairs(self, head):
         """
         :type head: ListNode
@@ -55,6 +81,7 @@ class Solution(object):
             head = head.next
 
         return dummy.next
+    '''
 
 
 # @lc code=end

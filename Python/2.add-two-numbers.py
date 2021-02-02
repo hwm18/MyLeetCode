@@ -37,6 +37,7 @@
 
 
 class Solution(object):
+    '''
     # soluiton 2: Your runtime beats 96.7 % of python submissions
     def addTwoNumbers(self, l1, l2):
         """
@@ -102,5 +103,39 @@ class Solution(object):
            head.next = ListNode(r)
            head = head.next
         return dummy.next
+    '''
+
+    '''
+    # Solution 3: 
+    Runtime: 72 ms, faster than 51.64% of Python3 online submissions for Add Two Numbers.
+    Memory Usage: 14.3 MB, less than 44.94% of Python3 online submissions for Add Two Numbers.
+    '''
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if not l1:
+            return l2
+        if not l2:
+            return l1
         
+        dummy = ListNode(-1)
+        head = dummy
+        carry,s = 0,0
+        while l1 or l2:
+            v1 = l1.val if l1 else 0
+            v2 = l2.val if l2 else 0
+
+            s= carry + v1 + v2
+            carry = carry//10
+            head.next = ListNode(s%10)
+            head = head.next
+            if l1:
+                l1 = l1.next
+            
+            if l2:
+                l2 = l2.next
+        
+        if carry >0:
+            head.next = ListNode(carry)
+        
+        return dummy.next
+
 

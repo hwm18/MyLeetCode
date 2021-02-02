@@ -45,7 +45,7 @@ class Solution:
         
         if l1:
             head.next = l1
-        else:
+        else: 
             head.next = l2
 
         return dummy.next
