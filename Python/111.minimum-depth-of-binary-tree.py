@@ -62,6 +62,7 @@ class Solution:
     def minDepth(self, root: TreeNode) -> int:
         if root == None:
             return 0
+            
         queue = deque([root])
         depth = 1
         rightMost = root

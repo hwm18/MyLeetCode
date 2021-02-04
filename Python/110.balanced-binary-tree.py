@@ -69,14 +69,29 @@ class Solution(object):
         if not root:
             return True
         
+        # buttom to top
         return self.helper(root) !=-1
+        
+        # recursion: top to buttom
+        #return abs(self.maxDepth(root.left)-self.maxDepth(root.right)) <=1 and self.isBalanced(root.left) and self.isBalanced(root.right)
     
     def helper(self, root):
         if not root:
             return 0
         l = self.helper(root.left)
+        if l == -1:
+            return -1        
         r = self.helper(root.right)
-        if l==-1 or r ==-1 or abs(l -r)>1:
+        if r == -1:
             return -1
+        if abs(l -r)>1:
+            return -1
+
         return max(l,r)+1
+    
+    def maxDepth(self, root):
+        if root == None:
+            return 0
+        
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 
