@@ -41,8 +41,59 @@
 #
 class Solution(object):
     # solution 2: Your runtime beats 98.87 % of python submissions
+    # 22/22 cases passed (16 ms)
+    # Your runtime beats 72.82 % of python submissions
+    # Your memory usage beats 40.26 % of python submissions (13.5 MB)
     def spiralOrder(self, matrix):
-        return matrix and list(matrix.pop(0)) + self.spiralOrder(zip(*matrix)[::-1])
+        # return matrix and list(matrix.pop(0)) + self.spiralOrder(zip(*matrix)[::-1])
+        result = []
+        if not matrix or len(matrix[0])==0:
+            return result        
+        
+        m,n=len(matrix), len(matrix[0])
+        row, col = 0,-1
+
+        while True:
+            # go right
+            for i in range(n):
+                col +=1
+                result.append(matrix[row][col])
+                            
+            m = m -1
+            if m == 0:
+                break
+            # go down
+            for i in range(m):
+                row += 1
+                result.append(matrix[row][col])
+                
+            n = n -1
+            if n==0:
+                break
+
+            # go left
+            for i in range(n):
+                col -= 1
+                result.append(matrix[row][col])
+                
+            m -= 1
+            if m ==0:
+                break
+
+            # go up
+            for i in range(m):
+                row -= 1
+                result.append(matrix[row][col])
+                
+            n -= 1
+            if n==0:
+                break
+        
+        return result
+
+
+
+
 
     '''
     # solution 1: Your runtime beats 68.81 % of python submissions

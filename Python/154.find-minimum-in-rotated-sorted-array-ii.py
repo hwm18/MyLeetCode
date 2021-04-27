@@ -14,9 +14,7 @@ class Solution(object):
             else:
                 end = mid if nums[end] != nums[mid] else end - 1
                 
-        if nums[start] < nums[end]:
-            return nums[start]
-        return nums[end]
+        return nums[start] if nums[start] < nums[end] else nums[end]
 
     """
     # Your runtime beats 47.94 % of python submissions
@@ -40,7 +38,7 @@ class Solution(object):
         """
         if not nums or len(nums)==0:
             return  -1
-        n = len(nums)
+        
         ans = 1<<31
         for i in nums:
             if i < ans:

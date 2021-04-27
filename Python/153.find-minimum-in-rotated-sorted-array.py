@@ -27,9 +27,9 @@ class Solution(object):
                 end = mid
             else:
                 start = mid
-        if nums[start]<nums[end]:
-            return nums[start]
-        else:
-            return nums[end]
+
+        # start +1 = end
+        return nums[start] if nums[start] < nums[end] else nums[end]
+        #return min(nums[start], nums[end])
         
 
