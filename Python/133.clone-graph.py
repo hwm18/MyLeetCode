@@ -60,10 +60,50 @@ class Node(object):
 
 
 class Solution(object):
+
+    def cloneGraph(self, node):
+        if not node:
+            return None
+        
+        # step 1: find nodes
+        nodes = self.find_nodes_bfs(node)
+        # step 2： copy nodes
+        mapping = self.copy_nodes(nodes)
+        # step 3: copy edges
+        self.copy_edges(nodes, mapping)
+
+        return mapping[node]
+    
+    def find_nodes_bfs(self, node):
+        queue = collections.deque([node])
+        visited = set([node])
+        while queue:
+            curr = queue.popleft()
+            for neighbor in curr.neighbors:
+                if neighbor in visited:
+                    continue
+
+                queue.append(neighbor)
+                visited.add(neighbor)
+        return list(visited)
+    
+    def copy_nodes(self, nodes):
+        mapping = {}
+        for node in nodes:
+            mapping[node] = Node(node.val)
+        return mapping
+    
+    def copy_edges(self, nodes, mapping):
+        for node in nodes:
+            new_node = mapping[node]
+            for neighbor in node.neighbors:
+                new_node.neighbors.append(mapping[neighbor])
+        
+
     # BFS
     def cloneGraph1(self, node):
         if not node:
-            return
+            return None
         nodeCopy = Node(node.val)
         dic = {node: nodeCopy}
         queue = collections.deque([node])
@@ -99,7 +139,7 @@ class Solution(object):
         return nodeCopy
 
     # DFS recursively
-    def cloneGraph(self, node):
+    def cloneGraph3(self, node):
         if not node:
             return
         nodeCopy = Node(node.val)

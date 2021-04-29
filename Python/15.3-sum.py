@@ -35,14 +35,58 @@
 #
 #
 class Solution(object):
+    # solution 2: use the two sum
+    # 318/318 cases passed (616 ms)
+    # Your runtime beats 86.76 % of python submissions
+    # Your memory usage beats 81.93 % of python submissions (16.9 MB)
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        self.result = []
+        if not nums:
+            return self.result
+        
+        n = len(nums)        
+        nums.sort()
+        for i in range(n):
+            if i > 0 and nums[i]==nums[i-1]: # skip the duplicate
+                continue
+            self.twoSum(nums, i+1, n-1, -nums[i])
+        
+        return self.result
+    
+    def twoSum(self, nums, start, end, target):
+        last_pair = None
+        while start < end:
+            total = nums[start] + nums[end]
+            if total == target:
+                if (nums[start], nums[end]) != last_pair: # skip the duplicate
+                    self.result.append((-target, nums[start], nums[end])) # target = -nums[i]
+                
+                last_pair = (nums[start], nums[end])
+                start +=1
+                end -=1
+            elif total<target:
+                start +=1
+            else:
+                end -= 1
+
+
+
+
+    '''
+    # Solutin 1:
     # Your runtime beats 75.82 % of python submissions
     def threeSum(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        if not nums or len(nums) == 0:
+        if not nums:
             return []
+
         ans, n = [], len(nums)
         nums.sort()
         for i in range(n - 1):
@@ -65,4 +109,5 @@ class Solution(object):
                     start += 1
                     end -= 1
         return ans
+    '''
 

@@ -57,22 +57,28 @@
 
 # @lc code=start
 class TwoSum:
-
+    
+    # solution 1: use hashmap
+    # 用HashMap来存储数据（key是num，value是num的个数）。add的时间复杂度是O(1), 
+    # find的时间复杂的是O(n)，空间复杂度O(n)。 需要注意的是当在map里找到value - num时，
+    # 要判断下这个值是否与num相等。如果不相等可以直接返回true，如果相等要确认num在map里不止一个
+    # 17/17 cases passed (340 ms)
+    # Your runtime beats 74.73 % of python3 submissions
+    # Your memory usage beats 64.14 % of python3 submissions (20.5 MB)
     def __init__(self):
         """
         Initialize your data structure here.
         """
         self.maps = {}
 
+    # O(1)
     def add(self, number: int) -> None:
         """
         Add the number to an internal data structure..
         """
-        if number in self.maps:
-            self.maps[number] += 1
-        else:
-            self.maps[number] = 1
-        
+        self.maps[number] = self.maps.get(number, 0) + 1
+    
+    # solution 1: use hashmap - add O(1)  find O(n)
     def find(self, value: int) -> bool:
         """
         Find if there exists any pair of numbers which sum is equal to the value.
@@ -80,13 +86,53 @@ class TwoSum:
         for num in self.maps.keys():
             target = value - num
             if target == num:
-                if self.maps[num] > 1:
+                if self.maps[num] > 1: # duple numbers
                     return True
             elif target in self.maps:
                 return True
           
         return False
 
+
+    '''
+    # solution 2: use two point for find and insert soret for add
+    # Time Limit Exceeded, 14/17 cases passed (N/A)
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.result = []
+
+    # insert sort: Time Limit Exceeded  O(n)
+    def add(self, number: int) -> None:
+        """
+        Add the number to an internal data structure..
+        """
+        self.result.append(number)
+        index = len(self.result)-1
+        while index > 0 and self.result[index-1] > self.result[index]:
+            temp = self.result[index-1]
+            self.result[index-1] = self.result[index]
+            self.result[index] = temp
+            index -= 1
+                
+    # solution 1: use two points  time: O(n)
+    def find(self, value: int) -> bool:
+        """
+        Find if there exists any pair of numbers which sum is equal to the value.
+        """
+        left, right = 0, len(self.result)-1
+        while left < right:
+            total = self.result[left] + self.result[right]
+            if total < value:
+                left +=1
+            elif total > value:
+                right -= 1
+            else:
+                return True
+        
+        return False
+    '''
         
 
 
