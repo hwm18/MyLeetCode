@@ -35,11 +35,28 @@
 #
 #
 class Solution(object):
+    # solution 3: not-sort
+    def threeSum(self, nums):
+        if not nums:
+            return []
+
+        res, dups = set(), set() # skip dup
+        seen = {}
+        for i, val1 in enumerate(nums):
+            if val1 not in dups: # skip duplicate
+                dups.add(val1)
+                for j, val2 in enumerate(nums[i+1:]):
+                    complement = -val1 - val2
+                    if complement in seen and seen[complement] == i:
+                        res.add(tuple(sorted((val1, val2, complement)))) # skip dup
+                    seen[val2] = i
+        return res
+
     # solution 2: use the two sum
     # 318/318 cases passed (616 ms)
     # Your runtime beats 86.76 % of python submissions
     # Your memory usage beats 81.93 % of python submissions (16.9 MB)
-    def threeSum(self, nums):
+    def threeSum2(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
