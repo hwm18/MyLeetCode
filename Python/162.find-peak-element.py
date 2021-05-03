@@ -26,9 +26,9 @@ class Solution(object):
                 return mid
                 
             if nums[mid] < nums[mid+1]:
-                start = mid+1
+                start = mid
             else:
-                end = mid-1
+                end = mid
                 
         #handle condition 1 and 2
         return start if nums[start] >= nums[end] else end
@@ -40,17 +40,14 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if not nums or len(nums)==0:
+        if not nums:
             return -1
         
         n = len(nums)
         if n ==1:
             return 0
         if n ==2:
-            if nums[0] > nums[1]:
-                return 0
-            else:
-                return 1
+            return 0 if nums[0] > nums[1] else 1
 
         start,end =0,len(nums)-1 # between
         while start + 1< end:
@@ -60,10 +57,7 @@ class Solution(object):
             else:
                 end = mid
         
-        if nums[start]>nums[end]:
-            return start
-        
-        return end
+        return start if nums[start]>nums[end] else end
     '''
         
 

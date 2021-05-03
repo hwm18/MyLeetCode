@@ -16,26 +16,29 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        if not nums or len(nums)==0:
+        if not nums:
             return -1
-        n = len(nums)
-        start, end = 0,n-1
-        while(start <= end):
-            mid = start + (end - start)/2
-            if target == nums[mid]:
-                return mid
+
+        start, end = 0,len(nums)-1
+        while(start + 1 < end):
+            mid = start + (end - start) // 2
 
             if nums[start] <= nums[mid]:
-                if nums[start]<=target <= nums[mid]:
-                    end = mid -1
+                if nums[start]<= target <= nums[mid]:
+                    end = mid
                 else:
-                    start = mid + 1
+                    start = mid 
             else:
-                if nums[mid]<target <= nums[end]:
-                    start = mid + 1
+                if nums[mid]<= target <= nums[end]:
+                    start = mid
                 else:
-                    end = mid -1
+                    end = mid
         
+        if nums[start]==target:
+            return start
+        if nums[end] == target:
+            return end
+
         return -1
     
     '''
