@@ -34,7 +34,54 @@
 
 # @lc code=start
 class Solution:
-    # solution: Iterate through each of the cell and if it is an island, 
+    # Solution 2: BFS
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        
+        self.dx = [1, -1, 0, 0]
+        self.dy = [0, 0, 1, -1]
+
+        n, m = len(grid), len(grid[0])
+        num = 0
+        visited = set()
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j]=='1' and (i,j) not in visited:
+                    self.bfs(grid,i,j, visited)
+                    num+=1
+        
+        return num
+    
+    def bfs(self, grid, row, col, visited):
+        queue = collections.deque([(row, col)])
+        visited.add((row, col))
+        while queue:
+            x, y = queue.popleft()
+            for i in range(4):
+                newXX = x + self.dx[i]
+                newYY = y + self.dy[i]
+                if not self.isValid(grid,newXX,newYY, visited):
+                    continue
+
+                queue.append((newXX,newYY))
+                visited.add((newXX,newYY))
+        
+    
+    def isValid(self, grid, x, y, visited):
+        n,m=len(grid), len(grid[0])
+        if not ( 0<= x <n and 0<=y<m):
+            return False
+        
+        if (x,y) in visited:
+            return False
+        
+        return grid[x][y] =='1'           
+             
+
+
+    '''
+    # solution 1:  DFS. Iterate through each of the cell and if it is an island, 
     # do dfs to mark all adjacent islands, then increase the counter by 1.
     def numIslands(self, grid: List[List[str]]) -> int:
         if not grid or len(grid) == 0:
@@ -83,6 +130,7 @@ class Solution:
         self.dfs(grid, row - 1, col)
         self.dfs(grid, row, col + 1)
         self.dfs(grid, row, col - 1)
+    '''
 
 
 # @lc code=end
