@@ -58,7 +58,7 @@ class Solution(object):
                     else:
                         q.append(new)
         return ans
-    '''
+  
 
     # soluition 2: DFS - Your runtime beats 98.82 % of python submissions
     def permute(self, nums):
@@ -76,4 +76,40 @@ class Solution(object):
             # return # backtracking
         for i in range(len(nums)):
             self.dfs(nums[:i]+nums[i+1:], path+ [nums[i]], res)
+  '''
+
+    # solution 3: DFS
+    # 25/25 cases passed (32 ms)
+    # Your runtime beats 34.57 % of python submissions
+    # Your memory usage beats 15.84 % of python submissions (13.8 MB)
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """        
+        if not nums:
+            return [[]]
+        
+        results = []
+        self.dfs(nums, set(), [], results)
+
+        return results
+    
+    def dfs(self, nums, visited, temp, results):
+        if len(nums) == len(temp):
+            results.append(list(temp))
+            return
+        
+        for i in nums:
+            if i in visited:
+                continue
+
+            temp.append(i)
+            visited.add(i)
+            self.dfs(nums, visited, temp, results)
+            visited.remove(i)
+            temp.pop()
+
+            
+
 
